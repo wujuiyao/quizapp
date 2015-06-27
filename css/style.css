@@ -1,0 +1,27 @@
+body{
+  text-align: center;
+  font-size: 16px;
+}
+button{
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  margin-top: 45px;
+  margin-right: 25px;
+  right: 0px;
+}
+
+.logo{
+  margin: 45px auto;
+}
+.logoHolder{
+  width: 370px;
+  height: 230px;
+  border: 2px solid #333333;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 45px;
+}
+.question{
+  font-size: 1.563em;
+}
