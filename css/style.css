@@ -74,12 +74,12 @@ ul li{
 }
 #list{
   margin: 0 auto 60px;
-  height: 65px;
+  height: 52px;
   font-size: 0px;
 }
 #list .question {
   display: inline-block;
-  width: 90px;
+  width: 70px;
   height: 100%;
   background-color: #f6f6f6;
   border-right: 1px solid #dddddd;
