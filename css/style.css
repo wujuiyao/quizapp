@@ -53,6 +53,7 @@ button:focus {outline:0;}
 #correction{
   margin-bottom: 25px;
   font-size: 1.563em;
+  color: #17d161;
 }
 ul li{
   display: inline-block;
@@ -64,7 +65,7 @@ ul li{
   height: 65px;
   font-size: 0px;
 }
-#list .question{
+#list .question {
   display: inline-block;
   width: 90px;
   height: 100%;
