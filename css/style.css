@@ -21,7 +21,7 @@ button:hover{
   cursor: pointer;
 }
 button:focus {outline:0;}
-#logo{
+#gameLogo{
   margin: 45px auto;
 }
 #logoHolder{
@@ -32,6 +32,9 @@ button:focus {outline:0;}
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 35px;
+}
+#brand-Logo{
+  padding-top: 10px;
 }
 #question{
   font-size: 1.563em;
@@ -51,9 +54,18 @@ button:focus {outline:0;}
   margin-right: 4px;
 }
 #correction{
-  margin-bottom: 25px;
+  margin: 0px auto 40px auto;
   font-size: 1.563em;
   color: #17d161;
+  width: 320px;
+  height: 65px;
+  padding-top:5px;
+  background-color: #d8fee2;
+}
+#mention{
+  font-size: 0.8em;
+  color: #555555;
+  margin-top: 8px;
 }
 ul li{
   display: inline-block;

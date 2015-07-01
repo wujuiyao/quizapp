@@ -11,39 +11,37 @@
 </head>
 <body>
   <header>
-    <img id="logo" src="assets/quizLogo.png" alt="logo">
+    <img id="gameLogo" src="assets/quizLogo.png" alt="logo">
     <button> Restart Game</button>
   </header>
-  <div>
-    <div id="logoHolder"></div>
+  <div id="logoHolder">
+    <img id="brand-Logo" src="assets/1.png" alt="" style="width: 360px;">
   </div>
   <div id="question">Do you recognize the logo?</div>
   <ul id="answers">
     <li>
       <input type="radio" id="answer1" name="rb" value="">
-      <label for="answer1">Answer 1</label>
+      <label for="answer1">Samsung</label>
     </li>
     <li>
       <input type="radio" id="answer2" name="rb" value="">
-      <label for="answer2">Answer 2</label>
+      <label for="answer2">IBM</label>
     </li>
     <li>
       <input type="radio" id="answer3" name="rb" value="">
-      <label for="answer3">Answer 3</label>
-    </li>
-    <li>
-      <input type="radio" id="answer4" name="rb" value="">
-      <label for="answer4">Answer 4</label>
+      <label for="answer3">INTEL</label>
     </li>
   </ul>
-  <div id="correction">Correct</div>
+  <div id="correction">
+    <p>Correct<br><p id="mention">Click anywhere to advance</p></p>
+  </div>
   <div id="list">
     <div id="question1" class="question"><img src="assets/correct.png" alt="" style="width: 90px;"></div>
     <div id="question2" class="question"><img src="assets/wrong.png" alt="" style="width: 90px;"></div>
     <div id="question3" class="question"><img src="assets/correct.png" alt="" style="width: 90px;"></div>
     <div id="question4" class="question"><img src="assets/correct.png" alt="" style="width: 90px;"></div>
-    <div id="question5" class="question"><img src="assets/correct.png" alt="" style="width: 90px;"></div>
-    <div id="question6" class="question"><img src="assets/wrong.png" alt="" style="width: 90px;"></div>
+    <div id="question5" class="question"></div>
+    <div id="question6" class="question"></div>
   </div>
 </body>
 </html>
