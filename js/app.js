@@ -19,11 +19,22 @@ $(document).ready(function(){
        logo: "2.png",
        options: ["Sony", "Nikon", "Canon"],
        correct: "2"
-   }];
+     },{
+       logo: "3.png",
+       options: ["Autodesk", "Adobe", "ABC"],
+       correct: "2"
+     },{
+
+     }];
 
    /*States*/
-   var currentLogo = 0;
    var correctAnswer = 0;
+   var currentLogo = 0;
+   var answer = gameData[currentLogo].correct;
+   console.log("Correct Answer is " + answer);
+   var click = document.getElementById('click');
+   click.style.visibility = 'hidden';
+
 
 
    /*Functions*/
@@ -45,11 +56,10 @@ $(document).ready(function(){
    displayOptions();
 
    //For teseting the correct answer
-   var answer = gameData[currentLogo].correct;
-   console.log(answer);
-   //
    function checkAnswer(){
+
      var userPick, radios = document.getElementsByName("rb");
+     var list = document.getElementsByClassName('question');
 
      //check if radio has been checked
      for (var i = 0; i < radios.length; i++) {
@@ -58,11 +68,25 @@ $(document).ready(function(){
         console.log(userPick);
       }
      }
-     //Compare userPick
+
+     var response =  document.getElementById('response');
+     var answer = document.getElementById('answer');
+
      if (userPick == gameData[currentLogo].correct) {
-       //keep wokring from here
-     }
+      response.style.backgroundColor = '#d8fee2';
+      answer.innerHTML = 'Correct';
+      answer.style.color = "rgb(22, 203, 0)";
+      click.style.visibility = 'visible';
+      list[currentLogo].src = 'assets/correct.png';
+    }else{
+      response.style.backgroundColor = '#FFB5B5';
+      answer.innerHTML = 'Wrong';
+      answer.style.color = 'rgb(255, 40, 40)';
+      click.style.visibility = 'visible';
+      list[currentLogo].src = 'assets/wrong.png';
+    }
    }
+
 
    // Events
    rb1.addEventListener('click', checkAnswer, false);

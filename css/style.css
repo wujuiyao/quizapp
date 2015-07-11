@@ -40,29 +40,33 @@ button:focus {outline:0;}
   font-size: 1.563em;
   font-weight: 300;
 }
-#answers{
+#options{
   padding-top: 25px;
   padding-bottom: 25px;
   display: block;
   font-size: 1.2em;
   font-weight: 700;
 }
-#answers input[type=radio]{
+#options input[type=radio]{
   width: 15px;
   height: 15px;
   vertical-align:middle;
   margin-right: 4px;
 }
-#correction{
+#response{
   margin: 0px auto 40px auto;
   font-size: 1.563em;
-  color: #17d161;
-  width: 320px;
+/*   color: #17d161;
+ */width: 320px;
   height: 65px;
   padding-top:5px;
-  background-color: #d8fee2;
+  /*background-color: #d8fee2;*/
+  /*background-color: #FFB5B5*/
 }
-#mention{
+#response-wrong{
+  font-size: 1.563em;
+}
+#click{
   font-size: 0.8em;
   color: #555555;
   margin-top: 8px;
@@ -74,16 +78,11 @@ ul li{
 }
 #list{
   margin: 0 auto 60px;
-  height: 52px;
   font-size: 0px;
 }
 #list .question {
   display: inline-block;
   width: 70px;
-  height: 100%;
+  height: 70px;
   background-color: #f6f6f6;
-  border-right: 1px solid #dddddd;
-}
-#list .question:last-child{
-  border-right: none;
 }
