@@ -24,7 +24,17 @@ $(document).ready(function(){
        options: ["Autodesk", "Adobe", "ABC"],
        correct: "2"
      },{
-
+       logo: "4.png",
+       options: ["Ferrari", "Lamborghini", "Bugatti"],
+       correct: "2"
+     },{
+       logo: "5.png",
+       options: ["Burberry", "Ralph Lauren", "Abercrombie & Fitch"],
+       correct: "2"
+     },{
+       logo: "6.png",
+       options: ["Chanel", "V&A Museum", "Playstation"],
+       correct: "3"
      }];
 
    /*States*/
