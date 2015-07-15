@@ -25,8 +25,8 @@ $(document).ready(function(){
        correct: "2"
      },{
        logo: "4.png",
-       options: ["Ferrari", "Lamborghini", "Bugatti"],
-       correct: "2"
+       options: ["Lamborghini", "Ferrari", "Bugatti"],
+       correct: "1"
      },{
        logo: "5.png",
        options: ["Burberry", "Ralph Lauren", "Abercrombie & Fitch"],
@@ -38,20 +38,20 @@ $(document).ready(function(){
      }];
 
    /*States*/
-   var correctAnswer = 0;
-   var currentLogo = 0;
-   var answer = gameData[currentLogo].correct;
-   console.log("Correct Answer is " + answer);
+   var answers = 0;
+   var currentLogo = 0; //index
+   var correctAnswer = gameData[currentLogo].correct; // variable for the correct Answer
+   console.log("Correct Answer is " + correctAnswer);
+
+
    var click = document.getElementById('click');
    click.style.visibility = 'hidden';
 
-
-
    /*Functions*/
-
    function displayLogo(){
      var brandLogo = document.getElementById('brand-Logo');
-     brandLogo.src ="assets/" + gameData[0].logo;
+     brandLogo.src ="assets/" + gameData[currentLogo].logo;
+     // brandLogo.src = "http://i1383.photobucket.com/albums/ah285/Wu_Jui_Yao/1_zps1kqmr73e.png";
    }
    displayLogo();
 
@@ -59,44 +59,48 @@ $(document).ready(function(){
      var option1 = document.getElementById('option1');
      var option2 = document.getElementById('option2');
      var option3 = document.getElementById('option3');
-     option1.innerHTML = gameData[0].options[0];
-     option2.innerHTML = gameData[0].options[1];
-     option3.innerHTML = gameData[0].options[2];
+     option1.innerHTML = gameData[currentLogo].options[0];
+     option2.innerHTML = gameData[currentLogo].options[1];
+     option3.innerHTML = gameData[currentLogo].options[2];
    }
    displayOptions();
 
-   //For teseting the correct answer
+
+   //For testing the correct answer
    function checkAnswer(){
-
      var userPick, radios = document.getElementsByName("rb");
-     var list = document.getElementsByClassName('question');
-
      //check if radio has been checked
      for (var i = 0; i < radios.length; i++) {
       if (radios[i].checked) {
         userPick = radios[i].value;
-        console.log(userPick);
+        console.log("Player chose " + userPick);
       }
      }
 
-     var response =  document.getElementById('response');
+     var response =  document.getElementById('response'); // where it explains correct or wrong
      var answer = document.getElementById('answer');
 
-     if (userPick == gameData[currentLogo].correct) {
+     var list = document.getElementsByClassName('question');
+     var rightAnswer = document.getElementsByClassName('rightAnswer'); // however the right is 2
+
+     if (userPick == correctAnswer) {
+      rightAnswer[correctAnswer - 1].src = "assets/right.png";
       response.style.backgroundColor = '#d8fee2';
       answer.innerHTML = 'Correct';
       answer.style.color = "rgb(22, 203, 0)";
       click.style.visibility = 'visible';
+      // list[currentLogo].src = 'http://i1383.photobucket.com/albums/ah285/Wu_Jui_Yao/correct_zpsjeudagse.png';
       list[currentLogo].src = 'assets/correct.png';
     }else{
+      rightAnswer[correctAnswer-1].src = "assets/right.png";
       response.style.backgroundColor = '#FFB5B5';
       answer.innerHTML = 'Wrong';
       answer.style.color = 'rgb(255, 40, 40)';
       click.style.visibility = 'visible';
+      // list[currentLogo].src = 'http://i1383.photobucket.com/albums/ah285/Wu_Jui_Yao/wrong_zpsv7vuogeg.png';
       list[currentLogo].src = 'assets/wrong.png';
     }
    }
-
 
    // Events
    rb1.addEventListener('click', checkAnswer, false);
