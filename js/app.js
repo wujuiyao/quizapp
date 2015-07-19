@@ -103,8 +103,8 @@ $(document).ready(function(){
        console.log('Player clicked, changed to next Logo');
        quizReady = true;
        //clear all the radio input
-       for(var i = 0; i < radios.length; i++){
-           radios[i].checked = false;
+       for(var a = 0; a < radios.length; a++){
+           radios[a].checked = false;
        }
        //clear the answer wordings
        answer.style.visibility = 'hidden';
@@ -123,9 +123,10 @@ $(document).ready(function(){
        }
     }
     }
-
    /*All the Events*/
    document.body.addEventListener('click', startQuiz, false);
+
+   /*Restart Game Button Event*/
    restart.addEventListener('click', function(){
 
    });
