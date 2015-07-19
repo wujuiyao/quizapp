@@ -1,15 +1,5 @@
 $(document).ready(function(){
-
-  /*Total Static*/
-  var restart = document.getElementById('restart');
-  var rb1 = document.getElementById('one');
-  var rb2 = document.getElementById('two');
-  var rb3 = document.getElementById('three');
-  var correctIcon = "correct.png";
-  var wrongIcon = "wrong.png";
-
-
-  /* Data per Game, including Logo, 3 Options and Correct Answer */
+  /* Game Datas */
   var gameData = [{
        logo: "1.png",
        options: ["Samsung", "IBM", "Intel"],
@@ -36,13 +26,22 @@ $(document).ready(function(){
        correct: "3"
      }];
 
+   /*Total Static*/
+   var restart = document.getElementById('restart');
+   var rb1 = document.getElementById('one');
+   var rb2 = document.getElementById('two');
+   var rb3 = document.getElementById('three');
+   var correctIcon = "correct.png";
+   var wrongIcon = "wrong.png";
+
    /*Initial var states*/
    var currentLogo = 0; //index
    var correctAnswer = gameData[currentLogo].correct; // variable for the correct Answer
    console.log("Correct Answer is " + correctAnswer);
-
    var click = document.getElementById('click');
-   click.style.visibility = 'hidden';
+       click.style.visibility = 'hidden'; // make the correct answer tick hidden
+   var quizReady = true;
+
 
    /*Different Functions*/
    function displayLogo(){
@@ -62,80 +61,72 @@ $(document).ready(function(){
    }
    displayOptions();
 
-   var response =  document.getElementById('response');
-   var answer = document.getElementById('answer');// where it explains correct or wrong
-
-   var list = document.getElementsByClassName('question');
-   var rightAnswer = document.getElementsByClassName('rightAnswer');
-   var userPick, radios = document.getElementsByName("rb");
-
-
    //Testing the correct answer
-   function checkAnswer(){
+   function startQuiz(){
+     var userPick, radios = document.getElementsByName("rb");
+     var list = document.getElementsByClassName('question');
+     var rightAnswer = document.getElementsByClassName('rightAnswer');
+     var response =  document.getElementById('response');
+     var answer = document.getElementById('answer');// where it explains correct or wrong
 
-     //check if radio has been checked
-     for (var i = 0; i < radios.length; i++) {
-      if (radios[i].checked) {
-        userPick = radios[i].value;
-        console.log("Player chose " + userPick);
-      }
-     }
+     if(quizReady){
+         quizReady = false;
+         //check if radio has been checked
+         for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            userPick = radios[i].value;
+            console.log("Player chose " + userPick);
+          }
+        }
 
-     if (userPick == correctAnswer) {
-      rightAnswer[correctAnswer-1].style.visibility = 'visible';
-      rightAnswer[correctAnswer-1].src = "assets/right.png";
+         if (userPick == correctAnswer) {
+          rightAnswer[correctAnswer-1].style.visibility = 'visible';
+          rightAnswer[correctAnswer-1].src = "assets/right.png";
+          response.style.backgroundColor = '#d8fee2';
+          answer.innerHTML = 'Correct';
+          answer.style.color = "rgb(22, 203, 0)";
+          answer.style.visibility = 'visible';
+          click.style.visibility = 'visible';
+          list[currentLogo].src = 'assets/correct.png';
+        }else{
+          rightAnswer[correctAnswer-1].style.visibility = 'visible';
+          rightAnswer[correctAnswer-1].src = "assets/right.png";
+          response.style.backgroundColor = '#FFB5B5';
+          answer.innerHTML = 'Wrong';
+          answer.style.color = 'rgb(255, 40, 40)';
+          answer.style.visibility = 'visible';
+          click.style.visibility = 'visible';
+          list[currentLogo].src = 'assets/wrong.png';
+        }
 
-      response.style.backgroundColor = '#d8fee2';
-      answer.innerHTML = 'Correct';
-      answer.style.color = "rgb(22, 203, 0)";
-
-      click.style.visibility = 'visible';
-      list[currentLogo].src = 'assets/correct.png';
-
-      //show the answer and wait for the click to continue to next logo
-
-    }else{
-
-      rightAnswer[correctAnswer-1].style.visibility = 'visible';
-      rightAnswer[correctAnswer-1].src = "assets/right.png";
-
-      response.style.backgroundColor = '#FFB5B5';
-      answer.innerHTML = 'Wrong';
-      answer.style.color = 'rgb(255, 40, 40)';
-
-      click.style.visibility = 'visible';
-      list[currentLogo].src = 'assets/wrong.png';
-
-      //show the answer and wait for the click to continue to next logo
-
+     }else{//move to the next logo
+       console.log('Player clicked, changed to next Logo');
+       quizReady = true;
+       //clear all the radio input
+       for(var i = 0; i < radios.length; i++){
+           radios[i].checked = false;
+       }
+       //clear the answer wordings
+       answer.style.visibility = 'hidden';
+       click.style.visibility = 'hidden';
+       response.style.backgroundColor = '#fff';
+       rightAnswer[correctAnswer-1].style.visibility = 'hidden';
+       //Change to new Logo and new correct Answer
+       if(currentLogo < gameData.length - 1){
+         currentLogo++;
+         correctAnswer = gameData[currentLogo].correct;
+         displayLogo();
+         displayOptions();
+       }else{
+         alert("You already finished the game, please restart!");
+         quizReady = false;
+       }
     }
     }
-
-
-
-
-   function next(){
-     currentLogo++;
-     displayLogo();
-     displayOptions();
-    //  answer.style.visibility = 'hidden'; //clear the answer html
-    //  click.style.visibility = 'hidden';
-    //  response.style.backgroundColor = "#fff";
-    //  rightAnswer[correctAnswer - 1].style.visibility = 'hidden'; //hide the correct tick
-    //  //clear the radio input
-    //  for(var i = 0; i < radios.length; i ++){
-    //    if(radios[i].checked === true){
-    //      radios[i].checked = false;
-    //    }
-    //  }
-     //set list one number back
-   }
-
 
    /*All the Events*/
-   rb1.addEventListener('click', checkAnswer, false);
-   rb2.addEventListener('click', checkAnswer, false);
-   rb3.addEventListener('click', checkAnswer, false);
-   restart.addEventListener();
+   document.body.addEventListener('click', startQuiz, false);
+   restart.addEventListener('click', function(){
 
+   });
 });
