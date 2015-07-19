@@ -26,18 +26,21 @@ $(document).ready(function(){
        correct: "3"
      }];
 
-   /*Total Static*/
+   /*Static Elements*/
    var restart = document.getElementById('restart');
-   var rb1 = document.getElementById('one');
-   var rb2 = document.getElementById('two');
-   var rb3 = document.getElementById('three');
    var correctIcon = "correct.png";
    var wrongIcon = "wrong.png";
+   var userPick, radios = document.getElementsByName("rb");
+   var list = document.getElementsByClassName('question');
+   var rightAnswer = document.getElementsByClassName('rightAnswer');
+   var response =  document.getElementById('response');
+   var answer = document.getElementById('answer');
+
 
    /*Initial var states*/
    var currentLogo = 0; //index
    var correctAnswer = gameData[currentLogo].correct; // variable for the correct Answer
-   console.log("Correct Answer is " + correctAnswer);
+    console.log("Correct Answer is " + correctAnswer);
    var click = document.getElementById('click');
        click.style.visibility = 'hidden'; // make the correct answer tick hidden
    var quizReady = true;
@@ -47,7 +50,6 @@ $(document).ready(function(){
    function displayLogo(){
      var brandLogo = document.getElementById('brand-Logo');
      brandLogo.src ="assets/" + gameData[currentLogo].logo;
-     // brandLogo.src = "http://i1383.photobucket.com/albums/ah285/Wu_Jui_Yao/1_zps1kqmr73e.png";
    }
    displayLogo();
 
@@ -61,47 +63,44 @@ $(document).ready(function(){
    }
    displayOptions();
 
-   //Testing the correct answer
+
    function startQuiz(){
-     var userPick, radios = document.getElementsByName("rb");
-     var list = document.getElementsByClassName('question');
-     var rightAnswer = document.getElementsByClassName('rightAnswer');
-     var response =  document.getElementById('response');
-     var answer = document.getElementById('answer');// where it explains correct or wrong
 
      if(quizReady){
          quizReady = false;
          //check if radio has been checked
          for (var i = 0; i < radios.length; i++) {
-          if (radios[i].checked) {
-            userPick = radios[i].value;
-            console.log("Player chose " + userPick);
-          }
-        }
+           if (radios[i].checked) {
+              userPick = radios[i].value;
+              console.log("Player chose " + userPick);
+           }
+         }
 
-         if (userPick == correctAnswer) {
-          rightAnswer[correctAnswer-1].style.visibility = 'visible';
-          rightAnswer[correctAnswer-1].src = "assets/right.png";
-          response.style.backgroundColor = '#d8fee2';
-          answer.innerHTML = 'Correct';
-          answer.style.color = "rgb(22, 203, 0)";
-          answer.style.visibility = 'visible';
-          click.style.visibility = 'visible';
-          list[currentLogo].src = 'assets/correct.png';
-        }else{
-          rightAnswer[correctAnswer-1].style.visibility = 'visible';
-          rightAnswer[correctAnswer-1].src = "assets/right.png";
-          response.style.backgroundColor = '#FFB5B5';
-          answer.innerHTML = 'Wrong';
-          answer.style.color = 'rgb(255, 40, 40)';
-          answer.style.visibility = 'visible';
-          click.style.visibility = 'visible';
-          list[currentLogo].src = 'assets/wrong.png';
-        }
+           //Testing and display the correct answer
+           if (userPick === correctAnswer) {
+            rightAnswer[correctAnswer-1].style.visibility = 'visible';
+            rightAnswer[correctAnswer-1].src = "assets/right.png";
+            response.style.backgroundColor = '#d8fee2';
+            answer.innerHTML = 'Correct';
+            answer.style.color = "rgb(22, 203, 0)";
+            answer.style.visibility = 'visible';
+            click.style.visibility = 'visible';
+            list[currentLogo].src = 'assets/correct.png';
+          }else{
+            rightAnswer[correctAnswer-1].style.visibility = 'visible';
+            rightAnswer[correctAnswer-1].src = "assets/right.png";
+            response.style.backgroundColor = '#FFB5B5';
+            answer.innerHTML = 'Wrong';
+            answer.style.color = 'rgb(255, 40, 40)';
+            answer.style.visibility = 'visible';
+            click.style.visibility = 'visible';
+            list[currentLogo].src = 'assets/wrong.png';
+          }
 
      }else{//move to the next logo
-       console.log('Player clicked, changed to next Logo');
-       quizReady = true;
+
+       console.log('Player clicked, change to next Logo');
+
        //clear all the radio input
        for(var a = 0; a < radios.length; a++){
            radios[a].checked = false;
@@ -111,23 +110,36 @@ $(document).ready(function(){
        click.style.visibility = 'hidden';
        response.style.backgroundColor = '#fff';
        rightAnswer[correctAnswer-1].style.visibility = 'hidden';
+
        //Change to new Logo and new correct Answer
        if(currentLogo < gameData.length - 1){
          currentLogo++;
          correctAnswer = gameData[currentLogo].correct;
          displayLogo();
          displayOptions();
+         quizReady = true; //back to quizReady
        }else{
          alert("You already finished the game, please restart!");
          quizReady = false;
        }
+     }
     }
+
+    //Restart Game
+    function restartGame(){
+      console.log("Started a New Game");
     }
+
    /*All the Events*/
-   document.body.addEventListener('click', startQuiz, false);
+   document.getElementById('restart').addEventListener('click', restartGame, false);
+   var rb1 = document.getElementById('one');
+   var rb2 = document.getElementById('two');
+   var rb3 = document.getElementById('three');
+   rb1.addEventListener('click', startQuiz, false);
+   rb2.addEventListener('click', startQuiz, false);
+   rb3.addEventListener('click', startQuiz, false);
 
-   /*Restart Game Button Event*/
-   restart.addEventListener('click', function(){
-
-   });
+  //  rb1.removeEventListener('click', startQuiz, false);
+  //  rb2.removeEventListener('click', startQuiz, false);
+  //  rb3.removeEventListener('click', startQuiz, false);
 });
