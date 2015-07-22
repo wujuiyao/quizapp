@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   /* Game Datas */
   var gameData = [{
   logo: "1.png",
@@ -62,9 +61,10 @@ $(document).ready(function(){
   displayOptions();
 
   /*Events*/
+  //Restart Game Event
   var restart = document.getElementById('restart');
   restart.addEventListener('click', restartGame, false);
-
+  //Radio Buttons and Body Event
   var rb1 = document.getElementById('one');
   var rb2 = document.getElementById('two');
   var rb3 = document.getElementById('three');
@@ -73,35 +73,20 @@ $(document).ready(function(){
       startQuiz();
     }
   });
-  // rb1.addEventListener('click', check);
-  // rb2.addEventListener('click', check);
-  // rb3.addEventListener('click', check);
-  // document.getElementById('browser').addEventListener('click', function(e){
-  //   alert('clicked');
-  // }, true);
-
-  /*Functions upon click event*/
-  //function to check which button or body clicked
-  // function check(){
-  //   if(rb1.checked === true){
-  //     startQuiz();
-  //   }else if(rb2.checked === true){
-  //     startQuiz();
-  //   }else if(rb3.checked === true){
-  //     startQuiz();
-  //   }
-  //
-  //   // for(var i = 0; i < radios.length; i++){
-  //   //   if(radios[i].checked){
-  //   //     startQuiz();
-  //   //     break;
-  //   //   }
-  //   // }
-  // }
 
   //Restart Game Function
   function restartGame(){
     console.log("Started a New Game");
+    currentLogo = 0;
+    displayLogo();
+    displayOptions();
+    correctAnswer = gameData[currentLogo].correct;
+    console.log("Correct Answer is " + correctAnswer);
+    click.style.visibility = 'hidden';
+    quizReady = true;
+    for(var i = 0; i < list.length; i ++){
+      list[i].src = '';
+    }
   }
   //Main Quiz Function
   function startQuiz(){
@@ -153,9 +138,35 @@ $(document).ready(function(){
           displayOptions();
           quizReady = true; //back to quizReady
         }else{
-          alert("You already finished the game, please restart!");
+          alert("You finished the game, please restart!");
           quizReady = false;
       }
     }
   }
 });
+
+// rb1.addEventListener('click', check);
+// rb2.addEventListener('click', check);
+// rb3.addEventListener('click', check);
+// document.getElementById('browser').addEventListener('click', function(e){
+//   alert('clicked');
+// }, true);
+
+/*Functions upon click event*/
+//function to check which button or body clicked
+// function check(){
+//   if(rb1.checked === true){
+//     startQuiz();
+//   }else if(rb2.checked === true){
+//     startQuiz();
+//   }else if(rb3.checked === true){
+//     startQuiz();
+//   }
+//
+//   // for(var i = 0; i < radios.length; i++){
+//   //   if(radios[i].checked){
+//   //     startQuiz();
+//   //     break;
+//   //   }
+//   // }
+// }
