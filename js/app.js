@@ -144,29 +144,3 @@ $(document).ready(function(){
     }
   }
 });
-
-// rb1.addEventListener('click', check);
-// rb2.addEventListener('click', check);
-// rb3.addEventListener('click', check);
-// document.getElementById('browser').addEventListener('click', function(e){
-//   alert('clicked');
-// }, true);
-
-/*Functions upon click event*/
-//function to check which button or body clicked
-// function check(){
-//   if(rb1.checked === true){
-//     startQuiz();
-//   }else if(rb2.checked === true){
-//     startQuiz();
-//   }else if(rb3.checked === true){
-//     startQuiz();
-//   }
-//
-//   // for(var i = 0; i < radios.length; i++){
-//   //   if(radios[i].checked){
-//   //     startQuiz();
-//   //     break;
-//   //   }
-//   // }
-// }
